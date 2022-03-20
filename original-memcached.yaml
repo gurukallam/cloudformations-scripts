@@ -13,10 +13,10 @@ Parameters:
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
  
 Resources:
-  ElasticCacheSubnetGroup:
-    Type: AWS::RDS::DBSubnetGroup
+  ElasticCacheSubnetGrouptest:
+    Type: AWS::ElastiCache::SubnetGroup
     Properties:
-      DBSubnetGroupDescription: Subnet Group to specify the subnets for elastic cache
+      Description: Subnet Group to specify the subnets for elastic cache
       SubnetIds:
         - subnet-007b38b966334c209
         - subnet-09dd7266f6640dfc0
@@ -39,6 +39,7 @@ Resources:
       CacheNodeType: cache.t2.small
       Engine: memcached
       NumCacheNodes: '3'
+      CacheSubnetGroupName: !Ref ElasticCacheSubnetGrouptest
       VpcSecurityGroupIds:
         - !Ref ElasticCacheSecurityGroup
       PreferredAvailabilityZones:
